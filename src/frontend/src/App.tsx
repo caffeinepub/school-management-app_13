@@ -24,6 +24,8 @@ import PrincipalDashboard from "./components/PrincipalDashboard";
 import PublicTeacherSchedule from "./components/PublicTeacherSchedule";
 import StudentView from "./components/StudentView";
 import TeacherDashboard from "./components/TeacherDashboard";
+import ThemeToggle from "./components/ThemeToggle";
+import { useTheme } from "./hooks/useTheme";
 
 type Role = "principal" | "teacher" | "student" | "teacher-schedule" | null;
 
@@ -31,6 +33,7 @@ const PRINCIPAL_PASSWORD = "1122";
 const VALID_CLASS_PASSWORDS = ["6", "7", "8", "9", "10", "11", "12"];
 
 export default function App() {
+  const { theme, setTheme } = useTheme();
   const [activeRole, setActiveRole] = useState<Role>(null);
   const [teacherClassId, setTeacherClassId] = useState<number>(6);
   const [pendingRole, setPendingRole] = useState<
@@ -80,15 +83,71 @@ export default function App() {
     setActiveRole(null);
   }
 
+  const sharedHeader = (
+    <header className="border-b border-border">
+      <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
+        <div className="relative">
+          <img
+            src="/assets/uploads/image_search_1773318134008-1.jpg"
+            alt="AIC Logo"
+            className="w-14 h-14 rounded-full object-cover border-2 border-accent/60 shadow-lg"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.style.display = "none";
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = "flex";
+            }}
+          />
+          <div className="w-14 h-14 rounded-full border-2 border-accent/60 items-center justify-center bg-primary/20 hidden">
+            <GraduationCap className="w-7 h-7 text-accent" />
+          </div>
+        </div>
+        <div>
+          <h1 className="font-display font-bold text-xl md:text-2xl leading-tight">
+            <span className="gold-shimmer">Adarsh Inter College</span>
+          </h1>
+          <p className="text-xs text-muted-foreground tracking-wider">
+            Adalhat, Mirzapur (UP) &nbsp;|&nbsp; Est. 1951
+          </p>
+        </div>
+        <div className="ml-auto flex items-center gap-3">
+          <ThemeToggle theme={theme} onThemeChange={setTheme} />
+          <span className="hidden sm:inline text-xs font-bold tracking-widest text-accent border border-accent/40 rounded px-2 py-0.5 uppercase">
+            AIC
+          </span>
+        </div>
+      </div>
+    </header>
+  );
+
   if (activeRole === "principal")
-    return <PrincipalDashboard onLogout={handleLogout} />;
+    return (
+      <>
+        {sharedHeader}
+        <PrincipalDashboard onLogout={handleLogout} />
+      </>
+    );
   if (activeRole === "teacher")
     return (
-      <TeacherDashboard onLogout={handleLogout} classId={teacherClassId} />
+      <>
+        {sharedHeader}
+        <TeacherDashboard onLogout={handleLogout} classId={teacherClassId} />
+      </>
     );
-  if (activeRole === "student") return <StudentView onBack={handleLogout} />;
+  if (activeRole === "student")
+    return (
+      <>
+        {sharedHeader}
+        <StudentView onBack={handleLogout} />
+      </>
+    );
   if (activeRole === "teacher-schedule")
-    return <PublicTeacherSchedule onBack={handleLogout} />;
+    return (
+      <>
+        {sharedHeader}
+        <PublicTeacherSchedule onBack={handleLogout} />
+      </>
+    );
 
   const roles = [
     {
@@ -136,39 +195,7 @@ export default function App() {
   return (
     <>
       <div className="min-h-screen bg-background school-pattern flex flex-col">
-        <header className="border-b border-border">
-          <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
-            <div className="relative">
-              <img
-                src="/assets/uploads/image_search_1773318134008-1.jpg"
-                alt="AIC Logo"
-                className="w-14 h-14 rounded-full object-cover border-2 border-accent/60 shadow-lg"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = "none";
-                  const fallback = target.nextElementSibling as HTMLElement;
-                  if (fallback) fallback.style.display = "flex";
-                }}
-              />
-              <div className="w-14 h-14 rounded-full border-2 border-accent/60 items-center justify-center bg-primary/20 hidden">
-                <GraduationCap className="w-7 h-7 text-accent" />
-              </div>
-            </div>
-            <div>
-              <h1 className="font-display font-bold text-xl md:text-2xl leading-tight">
-                <span className="gold-shimmer">Adarsh Inter College</span>
-              </h1>
-              <p className="text-xs text-muted-foreground tracking-wider">
-                Adalhat, Mirzapur (UP) &nbsp;|&nbsp; Est. 1951
-              </p>
-            </div>
-            <div className="ml-auto hidden sm:block">
-              <span className="text-xs font-bold tracking-widest text-accent border border-accent/40 rounded px-2 py-0.5 uppercase">
-                AIC
-              </span>
-            </div>
-          </div>
-        </header>
+        {sharedHeader}
 
         <div className="rule-line" />
 
