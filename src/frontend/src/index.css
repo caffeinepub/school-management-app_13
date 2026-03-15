@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Deep Navy + Rich Gold — AIC Prestige Theme */
+    --background: 0.13 0.04 260;
+    --foreground: 0.94 0.015 85;
+    --card: 0.17 0.045 258;
+    --card-foreground: 0.94 0.015 85;
+    --popover: 0.17 0.045 258;
+    --popover-foreground: 0.94 0.015 85;
+    --primary: 0.75 0.18 85;
+    --primary-foreground: 0.13 0.04 260;
+    --secondary: 0.22 0.055 258;
+    --secondary-foreground: 0.94 0.015 85;
+    --muted: 0.22 0.05 258;
+    --muted-foreground: 0.6 0.03 260;
+    --accent: 0.75 0.18 85;
+    --accent-foreground: 0.13 0.04 260;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 85;
+    --border: 0.26 0.055 258;
+    --input: 0.26 0.055 258;
+    --ring: 0.75 0.18 85;
+    --radius: 0.5rem;
+    --chart-1: 0.75 0.18 85;
+    --chart-2: 0.55 0.18 160;
+    --chart-3: 0.58 0.15 240;
+    --chart-4: 0.65 0.15 300;
+    --chart-5: 0.65 0.18 30;
+    --sidebar: 0.11 0.04 260;
+    --sidebar-foreground: 0.85 0.015 85;
+    --sidebar-primary: 0.75 0.18 85;
+    --sidebar-primary-foreground: 0.13 0.04 260;
+    --sidebar-accent: 0.22 0.055 258;
+    --sidebar-accent-foreground: 0.85 0.015 85;
+    --sidebar-border: 0.26 0.055 258;
+    --sidebar-ring: 0.75 0.18 85;
+  }
+
+  .dark {
+    --background: 0.13 0.04 260;
+    --foreground: 0.94 0.015 85;
+    --card: 0.17 0.045 258;
+    --card-foreground: 0.94 0.015 85;
+    --popover: 0.17 0.045 258;
+    --popover-foreground: 0.94 0.015 85;
+    --primary: 0.75 0.18 85;
+    --primary-foreground: 0.13 0.04 260;
+    --secondary: 0.22 0.055 258;
+    --secondary-foreground: 0.94 0.015 85;
+    --muted: 0.22 0.05 258;
+    --muted-foreground: 0.6 0.03 260;
+    --accent: 0.75 0.18 85;
+    --accent-foreground: 0.13 0.04 260;
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.98 0.005 85;
+    --border: 0.26 0.055 258;
+    --input: 0.26 0.055 258;
+    --ring: 0.75 0.18 85;
+    --chart-1: 0.75 0.18 85;
+    --chart-2: 0.65 0.18 160;
+    --chart-3: 0.58 0.15 240;
+    --chart-4: 0.68 0.15 300;
+    --chart-5: 0.65 0.18 30;
+    --sidebar: 0.11 0.04 260;
+    --sidebar-foreground: 0.85 0.015 85;
+    --sidebar-primary: 0.75 0.18 85;
+    --sidebar-primary-foreground: 0.13 0.04 260;
+    --sidebar-accent: 0.22 0.055 258;
+    --sidebar-accent-foreground: 0.85 0.015 85;
+    --sidebar-border: 0.26 0.055 258;
+    --sidebar-ring: 0.75 0.18 85;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+.rule-line {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(var(--accent)),
+    transparent
+  );
+  height: 1px;
+}
+
+.school-pattern {
+  background-image: radial-gradient(
+      ellipse at 15% 40%,
+      oklch(0.75 0.18 85 / 0.06) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 85% 15%,
+      oklch(0.75 0.18 85 / 0.09) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 60% 85%,
+      oklch(0.4 0.1 260 / 0.12) 0%,
+      transparent 50%
+    );
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    135deg,
+    oklch(0.82 0.16 80) 0%,
+    oklch(0.72 0.2 70) 40%,
+    oklch(0.85 0.14 90) 70%,
+    oklch(0.72 0.2 70) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
