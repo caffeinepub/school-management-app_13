@@ -316,7 +316,7 @@ export default function PrincipalDashboard({ onLogout }: Props) {
   return (
     <div className="min-h-screen bg-background school-pattern">
       {/* Header */}
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="blue-header-gradient sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">

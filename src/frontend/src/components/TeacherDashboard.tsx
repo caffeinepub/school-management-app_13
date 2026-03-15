@@ -202,7 +202,7 @@ export default function TeacherDashboard({ onLogout, classId }: Props) {
 
   return (
     <div className="min-h-screen bg-background school-pattern">
-      <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-10">
+      <header className="blue-header-gradient sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative">
